@@ -10,6 +10,17 @@ mkdirSync(OUT, { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
 
+if (process.env.SEED_CART) {
+  await page.goto(BASE);
+  await page.evaluate(() => {
+    localStorage.setItem("xiv.cart.v1", JSON.stringify([
+      { slug: "basic-heavy-weight-t-shirt", size: "M", color: "Bone", quantity: 1 },
+      { slug: "soft-wash-straight-fit-jeans", size: "L", color: "Indigo", quantity: 2 },
+    ]));
+    localStorage.setItem("xiv.favourites.v1", JSON.stringify(["abstract-print-shirt"]));
+  });
+}
+
 for (const spec of targets) {
   const [route, name, mode = "full"] = spec.split("::");
   await page.goto(BASE + route, { waitUntil: "networkidle" });
