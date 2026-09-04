@@ -136,7 +136,7 @@ export function SiteHeader() {
         />
 
         <div
-          className={`absolute inset-y-0 left-0 flex w-full max-w-[420px] flex-col bg-paper px-8 py-10 transition-transform duration-500 ease-[var(--ease-out-quint)] ${
+          className={`absolute inset-y-0 left-0 flex w-full max-w-[460px] flex-col overflow-y-auto bg-paper px-8 py-10 transition-transform duration-500 ease-[var(--ease-out-quint)] ${
             menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -152,14 +152,14 @@ export function SiteHeader() {
             </button>
           </div>
 
-          <nav className="mt-16 flex flex-col gap-2">
+          <nav className="mt-16 flex flex-col gap-[6px]">
             {[...NAV, { label: "Cart", href: "/cart" }, { label: "Checkout", href: "/checkout" }].map(
               (item, index) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="display text-[clamp(38px,9vw,56px)] text-ink transition-opacity hover:opacity-40"
+                  className="display w-fit text-[clamp(30px,8vw,44px)] leading-[1.05] text-ink transition-opacity hover:opacity-40"
                   style={{ transitionDelay: `${index * 30}ms` }}
                 >
                   {item.label}
@@ -168,7 +168,7 @@ export function SiteHeader() {
             )}
           </nav>
 
-          <div className="mt-auto flex gap-6 pt-10 text-[12px] text-ink-60">
+          <div className="mt-auto flex gap-6 pt-14 text-[12px] text-ink-60">
             <span>Eng</span>
             <span>Esp</span>
             <span>Sve</span>
