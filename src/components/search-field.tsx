@@ -34,7 +34,7 @@ export function SearchField({
       />
       <button
         type="submit"
-        className="shrink-0 text-[14px] leading-[18px] transition-opacity hover:opacity-60"
+        className="-my-3 shrink-0 py-3 text-[14px] leading-[18px] transition-opacity hover:opacity-60"
       >
         Search
       </button>

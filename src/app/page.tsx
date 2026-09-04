@@ -41,7 +41,7 @@ export default function HomePage() {
           <Reveal delay={100} className="self-end">
             <Link
               href="/products"
-              className="text-[16px] leading-[24px] underline-offset-[6px] transition-opacity hover:opacity-60 hover:underline"
+              className="-m-2 inline-block p-2 text-[16px] leading-[24px] underline-offset-[6px] transition-opacity hover:opacity-60 hover:underline"
             >
               See All
             </Link>

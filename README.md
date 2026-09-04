@@ -20,6 +20,7 @@ with the Next.js App Router, TypeScript and Tailwind CSS v4.
 | `/products/[slug]` | Gallery with a thumbnail rail, colourway and size pickers, add to bag, favourite toggle, related pieces |
 | `/cart` | Shopping bag and favourites tabs, per-line quantity stepper, order summary gated on the terms checkbox |
 | `/checkout` | Three-step flow — contact details, shipping address, payment — with a live order panel and a confirmation state |
+| `/about`, `/contact`, `/privacy`, `/terms` | Editorial pages behind the footer, so nothing dead-ends |
 
 Every product route is prerendered at build time from the catalogue in
 `src/lib/products.ts`.
@@ -29,6 +30,11 @@ Every product route is prerendered at build time from the catalogue in
 The layout is built to the source artboards: a 1280px frame with 50px gutters,
 a warm paper-and-ink palette, and an inline SVG film grain so the texture costs
 no extra network request. Archivo carries the display type, Inter the UI.
+
+Search opens as an overlay with live results rather than a link to a filtered
+page. Closed overlays are marked `inert`, so their controls leave the tab order
+and the accessibility tree, and small labels carry negative-margin padding to
+reach a 24px tap target without changing how they look.
 
 Scroll reveals render **visible** on the server and only hide elements that
 start below the fold, so a slow or failed hydration can never leave the page

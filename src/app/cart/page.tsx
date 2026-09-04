@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 
 import { CartView } from "@/components/cart-view";
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function CartPage() {
-  return <CartView />;
+  return (
+    <Suspense fallback={<div className="shell pt-[58px]" />}>
+      <CartView />
+    </Suspense>
+  );
 }

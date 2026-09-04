@@ -6,8 +6,8 @@ import { ArrowUpIcon, BrandMark } from "@/components/icons";
 
 const INFO = [
   { label: "Pricing", href: "/products" },
-  { label: "About", href: "/products" },
-  { label: "Contacts", href: "/checkout" },
+  { label: "About", href: "/about" },
+  { label: "Contacts", href: "/contact" },
 ];
 
 const LANGUAGES = ["Eng", "Esp", "Sve"];
@@ -32,7 +32,7 @@ export function SiteFooter() {
                   <li key={item.label} className="flex items-center gap-2">
                     <Link
                       href={item.href}
-                      className="text-[11px] leading-[9px] text-ink-60 transition-colors hover:text-ink"
+                      className="-my-2 inline-block py-2 text-[11px] leading-[9px] text-ink-60 transition-colors hover:text-ink"
                     >
                       {item.label}
                     </Link>
@@ -96,10 +96,10 @@ export function SiteFooter() {
           <div className="flex w-full flex-wrap items-center justify-between gap-x-[80px] gap-y-3 text-[12px] leading-[13px] text-ink-60 md:w-auto md:flex-nowrap">
             <span>© {new Date().getFullYear()} — copyright</span>
             <div className="flex items-center gap-[80px]">
-              <Link href="/" className="transition-colors hover:text-ink">
+              <Link href="/privacy" className="-my-2 inline-block py-2 transition-colors hover:text-ink">
                 privacy
               </Link>
-              <Link href="/" className="transition-colors hover:text-ink">
+              <Link href="/terms" className="-my-2 inline-block py-2 transition-colors hover:text-ink">
                 Terms
               </Link>
             </div>

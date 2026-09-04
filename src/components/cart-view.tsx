@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { ArrowLongIcon, CloseIcon, HeartIcon } from "@/components/icons";
@@ -15,7 +16,8 @@ type Tab = "bag" | "favourites";
 
 export function CartView() {
   const { lines, favourites, subtotal, shipping, total, setQuantity, remove } = useCart();
-  const [tab, setTab] = useState<Tab>("bag");
+  const params = useSearchParams();
+  const [tab, setTab] = useState<Tab>(params.get("tab") === "favourites" ? "favourites" : "bag");
   const [agreed, setAgreed] = useState(false);
 
   const saved = favourites.flatMap((slug) => {
@@ -184,21 +186,29 @@ export function CartView() {
             </span>
           </label>
 
-          <Link
-            href={agreed && lines.length > 0 ? "/checkout" : "#"}
-            aria-disabled={!agreed || lines.length === 0}
-            onClick={(event) => {
-              if (!agreed || lines.length === 0) event.preventDefault();
-            }}
-            className={`group mt-[16px] flex h-[40px] w-full items-center justify-between gap-4 rounded-full border px-[20px] text-[14px] transition-colors duration-500 ${
-              agreed && lines.length > 0
-                ? "border-ink hover:bg-ink hover:text-paper"
-                : "cursor-not-allowed border-ink/20 text-ink-40"
-            }`}
-          >
-            Checkout
-            <ArrowLongIcon className="w-[40px] shrink-0 transition-transform duration-500 group-hover:translate-x-1" />
-          </Link>
+          {agreed && lines.length > 0 ? (
+            <Link
+              href="/checkout"
+              className="group mt-[16px] flex h-[40px] w-full items-center justify-between gap-4 rounded-full border border-ink px-[20px] text-[14px] transition-colors duration-500 hover:bg-ink hover:text-paper"
+            >
+              Checkout
+              <ArrowLongIcon className="w-[40px] shrink-0 transition-transform duration-500 group-hover:translate-x-1" />
+            </Link>
+          ) : (
+            <button
+              type="button"
+              disabled
+              title={
+                lines.length === 0
+                  ? "Add a piece to your bag first"
+                  : "Accept the terms to continue"
+              }
+              className="mt-[16px] flex h-[40px] w-full cursor-not-allowed items-center justify-between gap-4 rounded-full border border-ink/20 px-[20px] text-[14px] text-ink-40"
+            >
+              Checkout
+              <ArrowLongIcon className="w-[40px] shrink-0" />
+            </button>
+          )}
         </aside>
       </div>
     </div>

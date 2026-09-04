@@ -97,6 +97,7 @@ export function CollectionsSection() {
               </button>
 
               <div
+                inert={!sortOpen}
                 className={`absolute right-0 z-10 mt-2 flex w-[140px] flex-col items-end gap-1 transition-[opacity,transform] duration-300 ease-[var(--ease-out-quint)] ${
                   sortOpen
                     ? "translate-y-0 opacity-100"

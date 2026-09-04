@@ -8,10 +8,11 @@ import {
   BagIcon,
   BrandMark,
   CloseIcon,
+  HeartIcon,
   MenuIcon,
   SearchIcon,
-  UserIcon,
 } from "@/components/icons";
+import { SearchOverlay } from "@/components/search-overlay";
 import { useCart } from "@/lib/cart";
 
 const NAV = [
@@ -25,8 +26,9 @@ const circle =
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const { count } = useCart();
+  const { count, favourites } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -37,10 +39,19 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = menuOpen || searchOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
+  }, [menuOpen, searchOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
   return (
@@ -63,7 +74,7 @@ export function SiteHeader() {
               type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
-              className="text-ink transition-opacity hover:opacity-60"
+              className="-m-3 grid size-[44px] place-items-center text-ink transition-opacity hover:opacity-60"
             >
               <MenuIcon />
             </button>
@@ -95,24 +106,36 @@ export function SiteHeader() {
 
           {/* Right: utilities */}
           <div className="ml-auto flex items-center gap-[10px]">
-            <Link href="/products" aria-label="Search" className={`${circle} mr-[24px] hidden sm:grid`}>
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search"
+              className={`${circle} mr-[24px] hidden sm:grid`}
+            >
               <SearchIcon />
-            </Link>
+            </button>
 
             <Link
               href="/cart"
-              className="flex h-[50px] items-center gap-2 rounded-full border border-ink/15 px-5 text-[14px] leading-[18px] text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-paper"
+              className="group flex h-[50px] items-center gap-2 rounded-full border border-ink/15 px-5 text-[14px] leading-[18px] text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-paper"
             >
               Cart
               {count > 0 && (
-                <span className="grid size-[18px] place-items-center rounded-full bg-ink text-[10px] font-medium text-paper transition-colors group-hover:bg-paper">
+                <span className="grid size-[18px] place-items-center rounded-full bg-ink text-[10px] font-medium text-paper transition-colors duration-300 group-hover:bg-paper group-hover:text-ink">
                   {count}
                 </span>
               )}
             </Link>
 
-            <Link href="/checkout" aria-label="Account" className={`${circle} hidden sm:grid`}>
-              <UserIcon />
+            <Link
+              href="/cart?tab=favourites"
+              aria-label={`Favourites${favourites.length ? ` (${favourites.length})` : ""}`}
+              className={`${circle} relative hidden sm:grid`}
+            >
+              <HeartIcon />
+              {favourites.length > 0 && (
+                <span className="absolute top-[6px] right-[6px] size-[7px] rounded-full bg-ink" />
+              )}
             </Link>
 
             <Link href="/cart" aria-label="Shopping bag" className={`${circle} hidden sm:grid`}>
@@ -122,20 +145,25 @@ export function SiteHeader() {
         </div>
       </header>
 
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+
       {/* Slide-over navigation */}
       <div
+        inert={!menuOpen}
         className={`fixed inset-0 z-50 transition-opacity duration-500 ${
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <button
-          type="button"
-          aria-label="Close menu"
+        <div
           onClick={() => setMenuOpen(false)}
           className="absolute inset-0 bg-ink/25 backdrop-blur-[2px]"
+          aria-hidden
         />
 
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Main menu"
           className={`absolute inset-y-0 left-0 flex w-full max-w-[460px] flex-col overflow-y-auto bg-paper px-8 py-10 transition-transform duration-500 ease-[var(--ease-out-quint)] ${
             menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}

@@ -9,7 +9,7 @@ export function Breadcrumb({ trail, title }: { trail: Crumb[]; title?: string })
         {trail.map((crumb, index) => (
           <span key={crumb.label}>
             {crumb.href ? (
-              <Link href={crumb.href} className="transition-colors hover:text-ink">
+              <Link href={crumb.href} className="-my-2 inline-block py-2 transition-colors hover:text-ink">
                 {crumb.label}
               </Link>
             ) : (

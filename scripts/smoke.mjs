@@ -35,12 +35,17 @@ await page.waitForTimeout(300);
 const total = await page.locator("aside").getByText(/^\$ \d+$/).last().innerText();
 check("total recalculates", /\$ \d+/.test(total), total);
 
-// Checkout gate
-const checkout = page.locator("aside a", { hasText: "Checkout" });
-check("checkout blocked until terms agreed", (await checkout.getAttribute("aria-disabled")) === "true");
+// Checkout gate: disabled renders as a button, enabled as a link to /checkout
+check(
+  "checkout blocked until terms agreed",
+  await page.locator("aside button:disabled", { hasText: "Checkout" }).isVisible(),
+);
 await page.getByText("I agree to the Terms and Conditions").click();
-await page.waitForTimeout(200);
-check("checkout unlocked after agreeing", (await checkout.getAttribute("aria-disabled")) === "false");
+await page.waitForTimeout(300);
+check(
+  "checkout unlocked after agreeing",
+  (await page.locator("aside a[href='/checkout']", { hasText: "Checkout" }).count()) === 1,
+);
 
 // Remove a line
 await page.locator('button[aria-label^="Remove"]').first().click();

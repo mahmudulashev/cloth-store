@@ -29,7 +29,13 @@ export function FilterRail({
   categoryOpen,
   onToggleCategory,
 }: FilterRailProps) {
-  const [open, setOpen] = useState(false);
+  // null means "whatever the breakpoint default is": collapsed under lg, open above.
+  const [open, setOpen] = useState<boolean | null>(null);
+
+  const toggleRail = () =>
+    setOpen((current) =>
+      current === null ? !window.matchMedia("(min-width: 1024px)").matches : !current,
+    );
 
   const toggleSize = (size: Size) =>
     onChange({
@@ -58,22 +64,22 @@ export function FilterRail({
       {/* Below lg the rail collapses so the grid is not pushed off screen */}
       <button
         type="button"
-        onClick={() => setOpen((value) => !value)}
-        aria-expanded={open}
-        className="flex w-full items-center justify-between lg:pointer-events-none"
+        onClick={toggleRail}
+        aria-expanded={open ?? undefined}
+        className="flex w-full items-center justify-between"
       >
         <h2 className="text-[18px] leading-[24px] font-medium">
           Filters
           {activeCount > 0 && <span className="text-ink-60"> ({activeCount})</span>}
         </h2>
         <ChevronDownIcon
-          className={`text-ink-40 transition-transform duration-300 lg:hidden ${
-            open ? "rotate-180" : ""
+          className={`text-ink-40 transition-transform duration-300 ${
+            open === true ? "rotate-180" : ""
           }`}
         />
       </button>
 
-      <div className={`${open ? "block" : "hidden"} lg:block`}>
+      <div className={open === null ? "hidden lg:block" : open ? "block" : "hidden"}>
       {/* Size */}
       <h3 className="mt-[24px] text-[16px] leading-[21px]">Size</h3>
       <div className="mt-[8px] flex flex-wrap gap-[4px]">

@@ -62,7 +62,7 @@ export function CheckoutView() {
     <div className="shell pt-[20px]">
       <Link
         href="/cart"
-        className="inline-flex items-center gap-2 text-[14px] text-ink-60 transition-colors hover:text-ink"
+        className="-my-2 inline-flex items-center gap-2 py-2 text-[14px] text-ink-60 transition-colors hover:text-ink"
       >
         <ArrowLeftIcon className="size-[16px]" />
         Back to bag
@@ -147,7 +147,7 @@ export function CheckoutView() {
           {lines.length === 0 ? (
             <p className="mt-[24px] text-[14px] text-ink-60">
               Your bag is empty.{" "}
-              <Link href="/products" className="underline underline-offset-4">
+              <Link href="/products" className="-my-2 inline-block py-2 underline underline-offset-4">
                 Add something first
               </Link>
               .
