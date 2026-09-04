@@ -2,7 +2,7 @@ import Link from "next/link";
 
 type Crumb = { label: string; href?: string };
 
-export function Breadcrumb({ trail, title }: { trail: Crumb[]; title: string }) {
+export function Breadcrumb({ trail, title }: { trail: Crumb[]; title?: string }) {
   return (
     <div>
       <nav aria-label="Breadcrumb" className="text-[14px] leading-[18px] text-ink-60">
@@ -20,7 +20,7 @@ export function Breadcrumb({ trail, title }: { trail: Crumb[]; title: string }) 
         ))}
       </nav>
 
-      <h1 className="display mt-[9px] text-[24px] leading-[30px]">{title}</h1>
+      {title && <h1 className="display mt-[9px] text-[24px] leading-[30px]">{title}</h1>}
     </div>
   );
 }
