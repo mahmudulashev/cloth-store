@@ -46,7 +46,7 @@ export function CollectionsSection() {
   }, [audience, sort]);
 
   return (
-    <section className="shell mt-[136px]">
+    <section className="shell mt-[96px] lg:mt-[136px]">
       <Reveal>
         <h2 className="display max-w-[520px] text-[clamp(40px,6vw,54px)] leading-[0.78]">
           XIV

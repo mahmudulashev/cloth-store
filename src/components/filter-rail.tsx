@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { ChevronDownIcon, ChevronRightIcon } from "@/components/icons";
 import { CATEGORIES, SIZES, type Category, type Size } from "@/lib/products";
 
@@ -27,6 +29,8 @@ export function FilterRail({
   categoryOpen,
   onToggleCategory,
 }: FilterRailProps) {
+  const [open, setOpen] = useState(false);
+
   const toggleSize = (size: Size) =>
     onChange({
       ...filters,
@@ -43,10 +47,33 @@ export function FilterRail({
         : [...filters.categories, category],
     });
 
+  const activeCount =
+    filters.sizes.length +
+    filters.categories.length +
+    Number(filters.inStockOnly) +
+    Number(filters.outOfStockOnly);
+
   return (
     <aside className="w-full lg:w-[280px] lg:shrink-0">
-      <h2 className="text-[18px] leading-[24px] font-medium">Filters</h2>
+      {/* Below lg the rail collapses so the grid is not pushed off screen */}
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between lg:pointer-events-none"
+      >
+        <h2 className="text-[18px] leading-[24px] font-medium">
+          Filters
+          {activeCount > 0 && <span className="text-ink-60"> ({activeCount})</span>}
+        </h2>
+        <ChevronDownIcon
+          className={`text-ink-40 transition-transform duration-300 lg:hidden ${
+            open ? "rotate-180" : ""
+          }`}
+        />
+      </button>
 
+      <div className={`${open ? "block" : "hidden"} lg:block`}>
       {/* Size */}
       <h3 className="mt-[24px] text-[16px] leading-[21px]">Size</h3>
       <div className="mt-[8px] flex flex-wrap gap-[4px]">
@@ -150,6 +177,7 @@ export function FilterRail({
           <div className="h-px w-full bg-line" />
         </div>
       ))}
+      </div>
     </aside>
   );
 }

@@ -36,8 +36,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setMenuOpen(false), [pathname]);
-
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -90,9 +88,9 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label="XIV — home"
-            className="absolute left-1/2 hidden -translate-x-1/2 text-ink transition-transform duration-500 hover:rotate-90 md:block"
+            className="absolute left-1/2 -translate-x-1/2 text-ink transition-transform duration-500 hover:rotate-90"
           >
-            <BrandMark className="size-[42px]" />
+            <BrandMark className="size-[36px] md:size-[42px]" />
           </Link>
 
           {/* Right: utilities */}
@@ -160,6 +158,7 @@ export function SiteHeader() {
                 <Link
                   key={item.label}
                   href={item.href}
+                  onClick={() => setMenuOpen(false)}
                   className="display text-[clamp(38px,9vw,56px)] text-ink transition-opacity hover:opacity-40"
                   style={{ transitionDelay: `${index * 30}ms` }}
                 >

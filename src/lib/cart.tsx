@@ -1,18 +1,9 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useCallback, useMemo, useSyncExternalStore } from "react";
 
+import { createPersistedStore } from "@/lib/persisted-store";
 import { getProduct, type Product, type Size } from "@/lib/products";
-
-const STORAGE_KEY = "xiv.cart.v1";
-const FAVOURITES_KEY = "xiv.favourites.v1";
 
 export type CartLine = {
   slug: string;
@@ -26,103 +17,69 @@ export type ResolvedLine = CartLine & {
   lineTotal: number;
 };
 
-type CartContextValue = {
-  lines: ResolvedLine[];
-  count: number;
-  subtotal: number;
-  shipping: number;
-  total: number;
-  favourites: string[];
-  add: (line: CartLine) => void;
-  setQuantity: (index: number, quantity: number) => void;
-  remove: (index: number) => void;
-  clear: () => void;
-  toggleFavourite: (slug: string) => void;
-  isFavourite: (slug: string) => boolean;
-};
-
-const CartContext = createContext<CartContextValue | null>(null);
-
 const SHIPPING_FLAT = 10;
 
-function readStorage<T>(key: string, fallback: T): T {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const raw = window.localStorage.getItem(key);
-    return raw ? (JSON.parse(raw) as T) : fallback;
-  } catch {
-    return fallback;
-  }
-}
+const NO_LINES: CartLine[] = [];
+const NO_FAVOURITES: string[] = [];
 
-export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [rawLines, setRawLines] = useState<CartLine[]>([]);
-  const [favourites, setFavourites] = useState<string[]>([]);
-  const [hydrated, setHydrated] = useState(false);
+const cartStore = createPersistedStore<CartLine[]>("xiv.cart.v1", NO_LINES);
+const favouritesStore = createPersistedStore<string[]>("xiv.favourites.v1", NO_FAVOURITES);
 
-  // Restore after mount so server and client markup match on the first paint.
-  useEffect(() => {
-    setRawLines(readStorage<CartLine[]>(STORAGE_KEY, []));
-    setFavourites(readStorage<string[]>(FAVOURITES_KEY, []));
-    setHydrated(true);
-  }, []);
+/**
+ * The bag and the favourites list. Both live outside React in localStorage and
+ * are read through useSyncExternalStore, so every component that calls this
+ * hook stays in step without a provider in the tree.
+ */
+export function useCart() {
+  const rawLines = useSyncExternalStore(
+    cartStore.subscribe,
+    cartStore.getSnapshot,
+    cartStore.getServerSnapshot,
+  );
 
-  useEffect(() => {
-    if (!hydrated) return;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(rawLines));
-    } catch {
-      // Storage can be unavailable (private mode, blocked cookies) — the cart
-      // still works for the session, it just will not survive a reload.
-    }
-  }, [rawLines, hydrated]);
-
-  useEffect(() => {
-    if (!hydrated) return;
-    try {
-      window.localStorage.setItem(FAVOURITES_KEY, JSON.stringify(favourites));
-    } catch {
-      // See above.
-    }
-  }, [favourites, hydrated]);
+  const favourites = useSyncExternalStore(
+    favouritesStore.subscribe,
+    favouritesStore.getSnapshot,
+    favouritesStore.getServerSnapshot,
+  );
 
   const add = useCallback((line: CartLine) => {
-    setRawLines((current) => {
+    cartStore.set((current) => {
       const match = current.findIndex(
         (l) => l.slug === line.slug && l.size === line.size && l.color === line.color,
       );
 
       if (match === -1) return [...current, line];
 
-      const next = [...current];
-      next[match] = {
-        ...next[match],
-        quantity: next[match].quantity + line.quantity,
-      };
-      return next;
+      return current.map((existing, index) =>
+        index === match
+          ? { ...existing, quantity: existing.quantity + line.quantity }
+          : existing,
+      );
     });
   }, []);
 
   const setQuantity = useCallback((index: number, quantity: number) => {
-    setRawLines((current) => {
-      if (quantity < 1) return current.filter((_, i) => i !== index);
-      return current.map((line, i) => (i === index ? { ...line, quantity } : line));
-    });
+    cartStore.set((current) =>
+      quantity < 1
+        ? current.filter((_, i) => i !== index)
+        : current.map((line, i) => (i === index ? { ...line, quantity } : line)),
+    );
   }, []);
 
   const remove = useCallback((index: number) => {
-    setRawLines((current) => current.filter((_, i) => i !== index));
+    cartStore.set((current) => current.filter((_, i) => i !== index));
   }, []);
 
-  const clear = useCallback(() => setRawLines([]), []);
+  const clear = useCallback(() => cartStore.set(() => []), []);
 
   const toggleFavourite = useCallback((slug: string) => {
-    setFavourites((current) =>
+    favouritesStore.set((current) =>
       current.includes(slug) ? current.filter((s) => s !== slug) : [...current, slug],
     );
   }, []);
 
-  const value = useMemo<CartContextValue>(() => {
+  return useMemo(() => {
     const lines: ResolvedLine[] = rawLines.flatMap((line) => {
       const product = getProduct(line.slug);
       if (!product) return [];
@@ -147,12 +104,4 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       isFavourite: (slug: string) => favourites.includes(slug),
     };
   }, [rawLines, favourites, add, setQuantity, remove, clear, toggleFavourite]);
-
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
-}
-
-export function useCart(): CartContextValue {
-  const context = useContext(CartContext);
-  if (!context) throw new Error("useCart must be used inside a CartProvider");
-  return context;
 }

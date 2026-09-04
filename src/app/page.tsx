@@ -23,7 +23,7 @@ export default function HomePage() {
       <Hero />
 
       {/* ------------------------------------------------------- New this week */}
-      <section className="shell mt-[150px] lg:mt-[80px]">
+      <section className="shell mt-[86px] lg:mt-[80px]">
         <div className="flex flex-wrap items-start justify-between gap-6">
           <Reveal>
             <h2 className="display flex items-start gap-[12px] text-[clamp(40px,6vw,54px)] leading-[0.78]">
@@ -70,7 +70,7 @@ export default function HomePage() {
       <CollectionsSection />
 
       {/* ------------------------------------------------------- Our approach */}
-      <section className="mt-[164px]">
+      <section className="mt-[96px] lg:mt-[164px]">
         <div className="shell">
           <Reveal>
             <h2 className="display mx-auto max-w-[924px] text-center text-[clamp(26px,3.6vw,40px)] leading-[1.05]">
