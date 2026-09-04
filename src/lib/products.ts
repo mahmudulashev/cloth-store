@@ -72,11 +72,10 @@ export const PRODUCTS: Product[] = [
     colors: [BONE, INK, SAND, SLATE, OLIVE],
     sizes: ALL_SIZES,
     images: [
-      "photo-1521572163474-6864f9cf17ab",
       "photo-1596755094514-f87e34085b2c",
-      "photo-1489987707025-afc232f7ea0f",
-      "photo-1503341455253-b2e723bb3dbb",
-      "photo-1618354691373-d851c5c3a990",
+      "photo-1523381210434-271e8be1f52b",
+      "photo-1490481651871-ab68de25d43d",
+      "photo-1567401893414-76b7b1e5a7a5",
     ],
     description:
       "Relaxed-fit shirt in crinkled seersucker cotton. Camp collar, short sleeves and a tonal chest embroidery finished by hand.",
@@ -95,11 +94,10 @@ export const PRODUCTS: Product[] = [
     colors: [INK, BONE, GREY, OLIVE, CLAY, SLATE],
     sizes: ALL_SIZES,
     images: [
-      "photo-1523381210434-271e8be1f52b",
-      "photo-1576566588028-4147f3842f27",
-      "photo-1554568218-0f1715e72254",
-      "photo-1622519407650-3df9883f76a5",
+      "photo-1521572163474-6864f9cf17ab",
       "photo-1571945153237-4929e783af4a",
+      "photo-1552374196-c4e7ffc6e126",
+      "photo-1529374255404-311a2a4f1fd9",
     ],
     description:
       "A slim-cut tee in long-staple combed cotton. Ribbed crew neck, clean side seams and a hem that holds its shape wash after wash.",
@@ -118,10 +116,10 @@ export const PRODUCTS: Product[] = [
     colors: [BONE, INK, INDIGO],
     sizes: ALL_SIZES,
     images: [
-      "photo-1620799140408-edc6dcb6d633",
       "photo-1503341455253-b2e723bb3dbb",
-      "photo-1600185365483-26d7a4cc7519",
-      "photo-1542291026-7eec264c27ff",
+      "photo-1618354691373-d851c5c3a990",
+      "photo-1618453292459-53424b66bb6a",
+      "photo-1552374196-c4e7ffc6e126",
     ],
     description:
       "Heavyweight jersey tee with a soft-focus placement print, screened in water-based inks so the hand stays light.",
@@ -141,9 +139,9 @@ export const PRODUCTS: Product[] = [
     sizes: ALL_SIZES,
     images: [
       "photo-1591047139829-d91aecb6caea",
-      "photo-1551028719-00167b16eac5",
-      "photo-1617137968427-85924c800a22",
       "photo-1611312449408-fcece27cdbb7",
+      "photo-1551028719-00167b16eac5",
+      "photo-1521223890158-f9f7c3d5d504",
     ],
     description:
       "Full-zip layer in brushed loopback cotton. Set-in sleeves, tonal hardware and a stand collar that sits flat under a coat.",
@@ -162,10 +160,10 @@ export const PRODUCTS: Product[] = [
     colors: [BONE, INK, SAND, GREY, OLIVE],
     sizes: ALL_SIZES,
     images: [
-      "photo-1489987707025-afc232f7ea0f",
-      "photo-1483985988355-763728e1935b",
-      "photo-1602293589930-45aad59ba3ab",
-      "photo-1516257984-b1b4d707412e",
+      "photo-1620799140408-edc6dcb6d633",
+      "photo-1529374255404-311a2a4f1fd9",
+      "photo-1554568218-0f1715e72254",
+      "photo-1521572163474-6864f9cf17ab",
     ],
     description:
       "240gsm cotton, garment-dyed for depth of colour. Boxy through the body with a double-stitched collar that will not roll.",
@@ -184,10 +182,10 @@ export const PRODUCTS: Product[] = [
     colors: [INDIGO, SLATE, INK, BONE, GREY, SAND],
     sizes: ALL_SIZES,
     images: [
-      "photo-1541099649105-f69ad21f3246",
+      "photo-1602293589930-45aad59ba3ab",
+      "photo-1560243563-062bfc001d68",
+      "photo-1495121605193-b116b5b9c5fe",
       "photo-1475178626620-a4d074967452",
-      "photo-1529374255404-311a2a4f1fd9",
-      "photo-1594633312681-425c7b97ccd1",
     ],
     description:
       "Straight leg in 12oz rigid denim, stone-washed to a lived-in hand. Mid rise, five pockets, copper rivets.",
@@ -206,11 +204,10 @@ export const PRODUCTS: Product[] = [
     colors: [BONE, INK, CLAY, OLIVE],
     sizes: ALL_SIZES,
     images: [
-      "photo-1596755094514-f87e34085b2c",
-      "photo-1608231387042-66d1773070a5",
+      "photo-1576566588028-4147f3842f27",
+      "photo-1503341455253-b2e723bb3dbb",
+      "photo-1618354691373-d851c5c3a990",
       "photo-1618453292459-53424b66bb6a",
-      "photo-1613852348851-df1739db8201",
-      "photo-1521223890158-f9f7c3d5d504",
     ],
     description:
       "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front.",
@@ -229,10 +226,10 @@ export const PRODUCTS: Product[] = [
     colors: [BONE, OLIVE, INK, SLATE],
     sizes: ALL_SIZES,
     images: [
-      "photo-1560243563-062bfc001d68",
-      "photo-1567401893414-76b7b1e5a7a5",
-      "photo-1595950653106-6c9ebd614d3a",
-      "photo-1549298916-b41d501d3772",
+      "photo-1622519407650-3df9883f76a5",
+      "photo-1552374196-c4e7ffc6e126",
+      "photo-1571945153237-4929e783af4a",
+      "photo-1618453292459-53424b66bb6a",
     ],
     description:
       "Classic three-button polo in cotton piqué with a ribbed collar and side vents at the hem.",
@@ -251,9 +248,9 @@ export const PRODUCTS: Product[] = [
     colors: [SAND, BONE, INK],
     sizes: ALL_SIZES,
     images: [
-      "photo-1591047139829-d91aecb6caea",
-      "photo-1445205170230-053b83016050",
-      "photo-1509319117193-57bab727e09d",
+      "photo-1594633312681-425c7b97ccd1",
+      "photo-1475178626620-a4d074967452",
+      "photo-1495121605193-b116b5b9c5fe",
     ],
     description:
       "Single-pleat shorts cut from washed linen. Extended tab closure and a tailored break just above the knee.",
@@ -272,8 +269,8 @@ export const PRODUCTS: Product[] = [
     colors: [INK, SLATE, INDIGO],
     sizes: ALL_SIZES,
     images: [
-      "photo-1594938298603-c8148c4dae35",
-      "photo-1507003211169-0a1dd7228f2d",
+      "photo-1617137968427-85924c800a22",
+      "photo-1487222477894-8943e31ef7b2",
       "photo-1521223890158-f9f7c3d5d504",
     ],
     description:
@@ -293,10 +290,10 @@ export const PRODUCTS: Product[] = [
     colors: [INDIGO, BONE, INK],
     sizes: ALL_SIZES,
     images: [
-      "photo-1551028719-00167b16eac5",
-      "photo-1495121605193-b116b5b9c5fe",
+      "photo-1611312449408-fcece27cdbb7",
       "photo-1516257984-b1b4d707412e",
-      "photo-1608234808654-2a8875faa7fd",
+      "photo-1560243563-062bfc001d68",
+      "photo-1495121605193-b116b5b9c5fe",
     ],
     description:
       "A squared-off trucker in rigid selvedge denim, cut a size up through the shoulder so it layers over knitwear.",
@@ -315,9 +312,9 @@ export const PRODUCTS: Product[] = [
     colors: [SAND, INK, SLATE],
     sizes: ALL_SIZES,
     images: [
-      "photo-1539533018447-63fcce2678e3",
       "photo-1483985988355-763728e1935b",
-      "photo-1591047139829-d91aecb6caea",
+      "photo-1608234808654-2a8875faa7fd",
+      "photo-1487222477894-8943e31ef7b2",
     ],
     description:
       "Knee-length overcoat in a brushed wool-cashmere blend. Notch lapel, welt pockets, unstructured shoulder.",
@@ -336,10 +333,10 @@ export const PRODUCTS: Product[] = [
     colors: [BONE, INK, INDIGO, CLAY],
     sizes: ALL_SIZES,
     images: [
-      "photo-1594633312681-425c7b97ccd1",
+      "photo-1581044777550-4cfa60707c03",
+      "photo-1554568218-0f1715e72254",
+      "photo-1523381210434-271e8be1f52b",
       "photo-1490481651871-ab68de25d43d",
-      "photo-1487222477894-8943e31ef7b2",
-      "photo-1469334031218-e382a71b716b",
     ],
     description:
       "Dropped-shoulder shirt in crisp cotton poplin with a concealed placket and a curved shirttail hem.",
@@ -358,9 +355,9 @@ export const PRODUCTS: Product[] = [
     colors: [INDIGO, BONE, INK],
     sizes: ALL_SIZES,
     images: [
-      "photo-1541099649105-f69ad21f3246",
-      "photo-1492707892479-7bc8d5a4ee93",
-      "photo-1496747611176-843222e1e57c",
+      "photo-1475178626620-a4d074967452",
+      "photo-1594633312681-425c7b97ccd1",
+      "photo-1602293589930-45aad59ba3ab",
     ],
     description:
       "High-rise denim with a full, straight-falling leg and a clean tonal topstitch throughout.",
@@ -379,9 +376,9 @@ export const PRODUCTS: Product[] = [
     colors: [INK, OLIVE, BONE],
     sizes: ALL_SIZES,
     images: [
+      "photo-1521223890158-f9f7c3d5d504",
       "photo-1551028719-00167b16eac5",
-      "photo-1502716119720-b23a93e5fe1b",
-      "photo-1537832816519-689ad163238b",
+      "photo-1487222477894-8943e31ef7b2",
     ],
     description:
       "Lightweight bomber in matte technical nylon. Ribbed collar and cuffs, two-way zip, packable.",
@@ -400,9 +397,9 @@ export const PRODUCTS: Product[] = [
     colors: [BONE, INK, CLAY, OLIVE],
     sizes: ["XS", "S", "M"],
     images: [
-      "photo-1503341455253-b2e723bb3dbb",
-      "photo-1622519407650-3df9883f76a5",
-      "photo-1581044777550-4cfa60707c03",
+      "photo-1613852348851-df1739db8201",
+      "photo-1529374255404-311a2a4f1fd9",
+      "photo-1576566588028-4147f3842f27",
     ],
     description:
       "The heavyweight tee, scaled down. Reinforced neck tape and a generous cut for room to grow.",
@@ -422,8 +419,8 @@ export const PRODUCTS: Product[] = [
     sizes: ALL_SIZES,
     images: [
       "photo-1434389677669-e08b4cac3105",
-      "photo-1479064555552-3ef4979f8908",
-      "photo-1515886657613-9f3515b0c78f",
+      "photo-1622519407650-3df9883f76a5",
+      "photo-1509319117193-57bab727e09d",
     ],
     description:
       "Extra-fine merino knit in a 14-gauge crew. Light enough to wear alone, thin enough to layer under tailoring.",
@@ -442,9 +439,9 @@ export const PRODUCTS: Product[] = [
     colors: [OLIVE, INK, SAND],
     sizes: ALL_SIZES,
     images: [
-      "photo-1552374196-c4e7ffc6e126",
-      "photo-1441986300917-64674bd600d8",
-      "photo-1475178626620-a4d074967452",
+      "photo-1608234808654-2a8875faa7fd",
+      "photo-1483985988355-763728e1935b",
+      "photo-1487222477894-8943e31ef7b2",
     ],
     description:
       "Three-pocket chore coat in dry-handle cotton canvas that softens with wear. Corozo buttons throughout.",
