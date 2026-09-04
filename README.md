@@ -3,7 +3,7 @@
 A fashion e-commerce storefront built from a Figma design system, implemented
 with the Next.js App Router, TypeScript and Tailwind CSS v4.
 
-**Live:** https://cloth-store.vercel.app
+**Live:** https://cloth-store-gules.vercel.app
 
 ![Home page](docs/home.png)
 

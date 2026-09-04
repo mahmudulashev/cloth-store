@@ -3,6 +3,7 @@ import { Archivo, Inter } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -20,7 +21,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cloth-store.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "XIV — Elegant Vogue",
     template: "%s — XIV",
