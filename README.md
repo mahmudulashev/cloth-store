@@ -6,6 +6,8 @@ with the Next.js App Router, TypeScript and Tailwind CSS v4.
 **Live:** https://cloth-store-gules.vercel.app
 
 ![Home page](docs/home.png)
+![Products listing](docs/products.png)
+![Product detail](docs/detail.png)
 
 ---
 
